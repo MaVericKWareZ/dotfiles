@@ -56,14 +56,17 @@ brew install --cask displaylink
 echo "displaylink installation complete!"
 
 if [ "$MODE" = "work" ]; then
+    echo "installing work.sh"
     source work.sh
 else
+    echo "installing home.sh"
     source home.sh
 fi
 
 source ~/.zshrc
 
 if [ "$EXTRAS" = "on" ]; then
+    echo "installing extras.sh"
     source extras.sh
 fi
 
