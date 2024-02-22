@@ -131,7 +131,8 @@ export java_version=11
 # maven config
 export M2_HOME=~/java_dev/apache-maven-3.8.6
 export PATH=$PATH:$M2_HOME/bin
-export github_pat=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
+# Replace github_pat here 
+export github_pat=foobar 
 
 # command to ssh into jumpbox for env 
 ssh_vault(){
