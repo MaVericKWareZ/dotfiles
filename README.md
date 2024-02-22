@@ -17,5 +17,16 @@ Tools installed -
 - Create a .env file with below variables
 
 ```
+GIT_EMAIL=sarthak.mahapatra@bayer.com
+GIT_PAT=foobar
+EXTRAS=on
+MODE=work
+```
+
+- make setup.sh executable and run setup.sh
 
 ```
+chmod +x setup.sh
+./setup.sh
+```
+
