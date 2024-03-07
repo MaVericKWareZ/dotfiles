@@ -29,3 +29,4 @@ MODE=work
 chmod +x setup.sh
 ./setup.sh
 ```
+
