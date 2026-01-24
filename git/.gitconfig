@@ -1,0 +1,199 @@
+#===============================================================================
+# Git Configuration
+# Managed by dotfiles
+#===============================================================================
+
+#-------------------------------------------------------------------------------
+# User Identity (Personal - Default)
+# Override for work in ~/.gitconfig-work
+#-------------------------------------------------------------------------------
+[user]
+    name = Your Name
+    email = your.email@example.com
+    # SSH signing key (update path after generating key)
+    signingkey = ~/.ssh/id_ed25519.pub
+
+#-------------------------------------------------------------------------------
+# Core Settings
+#-------------------------------------------------------------------------------
+[core]
+    editor = vim
+    # Use diff-so-fancy for better diffs
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    # Global gitignore
+    excludesfile = ~/.gitignore_global
+    # Handle line endings
+    autocrlf = input
+    # Improve performance for large repos
+    preloadindex = true
+    fscache = true
+
+#-------------------------------------------------------------------------------
+# Init
+#-------------------------------------------------------------------------------
+[init]
+    defaultBranch = main
+
+#-------------------------------------------------------------------------------
+# Commit
+#-------------------------------------------------------------------------------
+[commit]
+    # Sign all commits with SSH key
+    gpgsign = true
+    # Show diff in commit message editor
+    verbose = true
+
+#-------------------------------------------------------------------------------
+# GPG (using SSH for signing)
+#-------------------------------------------------------------------------------
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    # Use macOS keychain for SSH
+    program = /usr/bin/ssh-add
+
+#-------------------------------------------------------------------------------
+# Pull / Push / Fetch
+#-------------------------------------------------------------------------------
+[pull]
+    # Default to merge (not rebase)
+    rebase = false
+
+[push]
+    # Push current branch to upstream
+    default = current
+    # Auto-setup remote tracking
+    autoSetupRemote = true
+    # Push tags with commits
+    followTags = true
+
+[fetch]
+    # Prune deleted remote branches
+    prune = true
+
+#-------------------------------------------------------------------------------
+# Branch
+#-------------------------------------------------------------------------------
+[branch]
+    # Sort branches by most recent commit
+    sort = -committerdate
+
+#-------------------------------------------------------------------------------
+# Merge
+#-------------------------------------------------------------------------------
+[merge]
+    # Show common ancestor in conflicts
+    conflictstyle = diff3
+    # Use VS Code as merge tool
+    tool = vscode
+
+[mergetool "vscode"]
+    cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+
+#-------------------------------------------------------------------------------
+# Diff
+#-------------------------------------------------------------------------------
+[diff]
+    # Better diff algorithm
+    algorithm = histogram
+    # Detect renames and copies
+    renames = copies
+    # Use VS Code as diff tool
+    tool = vscode
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+#-------------------------------------------------------------------------------
+# diff-so-fancy colors
+#-------------------------------------------------------------------------------
+[color]
+    ui = true
+
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+
+[color "diff"]
+    meta = 11
+    frag = magenta bold
+    func = 146 bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
+#-------------------------------------------------------------------------------
+# Interactive
+#-------------------------------------------------------------------------------
+[interactive]
+    diffFilter = diff-so-fancy --patch
+
+#-------------------------------------------------------------------------------
+# Aliases
+#-------------------------------------------------------------------------------
+[alias]
+    # Shortcuts
+    s = status -s
+    co = checkout
+    br = branch
+    ci = commit
+    
+    # Logging
+    lg = log --oneline --graph --decorate -15
+    lgall = log --oneline --graph --decorate --all -30
+    last = log -1 HEAD --stat
+    
+    # Show what changed
+    what = whatchanged -p --abbrev-commit --pretty=medium
+    
+    # Undo last commit (keep changes)
+    undo = reset HEAD~1 --mixed
+    
+    # Amend without editing message
+    amend = commit --amend --no-edit
+    
+    # Force push safely
+    please = push --force-with-lease
+    
+    # Show contributors
+    contributors = shortlog --summary --numbered
+    
+    # Show branches by recent activity
+    recent = branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)'
+    
+    # Clean up merged branches
+    cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master\\|develop' | xargs -n 1 git branch -d"
+
+#-------------------------------------------------------------------------------
+# URL Shortcuts
+#-------------------------------------------------------------------------------
+[url "git@github.com:"]
+    insteadOf = gh:
+
+#-------------------------------------------------------------------------------
+# Rerere (Reuse Recorded Resolution)
+#-------------------------------------------------------------------------------
+[rerere]
+    enabled = true
+
+#-------------------------------------------------------------------------------
+# Help
+#-------------------------------------------------------------------------------
+[help]
+    # Autocorrect typos (with 1 second delay)
+    autocorrect = 10
+
+#-------------------------------------------------------------------------------
+# Conditional Includes
+# Include work-specific config when in work directories
+#-------------------------------------------------------------------------------
+[includeIf "gitdir:~/work/"]
+    path = ~/.gitconfig-work
+
+# You can add more directory-based includes:
+# [includeIf "gitdir:~/company/"]
+#     path = ~/.gitconfig-company

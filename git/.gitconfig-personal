@@ -1,0 +1,10 @@
+#===============================================================================
+# Git Configuration - Personal Identity
+# 
+# Use this as a reference or for explicit personal includes
+#===============================================================================
+
+[user]
+    name = Your Name
+    email = your.email@example.com
+    signingkey = ~/.ssh/id_ed25519.pub

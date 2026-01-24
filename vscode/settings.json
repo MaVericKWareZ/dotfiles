@@ -1,0 +1,176 @@
+{
+  //===========================================================================
+  // VS Code Settings
+  // Managed by dotfiles
+  //===========================================================================
+
+  //===========================================================================
+  // Editor
+  //===========================================================================
+  "editor.fontFamily": "'FiraCode Nerd Font', 'Fira Code', Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [100],
+  "editor.wordWrap": "off",
+  "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": "off",
+  "editor.smoothScrolling": false,
+  "editor.renderWhitespace": "boundary",
+  "editor.suggestSelection": "first",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.inlineSuggest.enabled": true,
+  "editor.stickyScroll.enabled": true,
+
+  //===========================================================================
+  // Workbench
+  //===========================================================================
+  "workbench.colorTheme": "Material Theme Darker",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "none",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.showTabs": "multiple",
+  "workbench.sideBar.location": "left",
+  "workbench.activityBar.location": "side",
+  "workbench.tree.indent": 16,
+  "workbench.list.smoothScrolling": false,
+
+  //===========================================================================
+  // Files
+  //===========================================================================
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/*.pyc": true
+  },
+
+  //===========================================================================
+  // Terminal
+  //===========================================================================
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.fontFamily": "'FiraCode Nerd Font', 'Fira Code', Monaco, monospace",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.cursorBlinking": false,
+  "terminal.integrated.smoothScrolling": false,
+
+  //===========================================================================
+  // Git
+  //===========================================================================
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "always",
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  //===========================================================================
+  // Search
+  //===========================================================================
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.git": true
+  },
+
+  //===========================================================================
+  // Language-Specific Settings
+  //===========================================================================
+
+  // JavaScript / TypeScript
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Python
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+
+  // Java
+  "[java]": {
+    "editor.tabSize": 4
+  },
+
+  // Go
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.tabSize": 4
+  },
+
+  // Markdown
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.rulers": [],
+    "files.trimTrailingWhitespace": false
+  },
+
+  // YAML
+  "[yaml]": {
+    "editor.tabSize": 2
+  },
+
+  //===========================================================================
+  // Extensions
+  //===========================================================================
+
+  // Prettier
+  "prettier.semi": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.printWidth": 100,
+
+  // ESLint
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  // Ruff (Python)
+  "ruff.lint.enable": true,
+  "ruff.format.args": ["--line-length=100"],
+
+  //===========================================================================
+  // Telemetry
+  //===========================================================================
+  "telemetry.telemetryLevel": "off",
+  "workbench.enableExperiments": false
+}

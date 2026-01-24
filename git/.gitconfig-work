@@ -1,0 +1,17 @@
+#===============================================================================
+# Git Configuration - Work Override
+# 
+# This file is loaded for repositories under ~/work/
+# Customize with your work email and any work-specific settings
+#===============================================================================
+
+[user]
+    name = Your Work Name
+    email = your.email@company.com
+    # Use separate SSH key for work if needed
+    # signingkey = ~/.ssh/id_ed25519_work.pub
+
+# Add any work-specific overrides below
+# Example:
+# [core]
+#     sshCommand = ssh -i ~/.ssh/id_ed25519_work

@@ -1,0 +1,18 @@
+# Work-specific Brewfile
+# Add work-specific packages here
+# This file is optional and only loaded if present
+
+#===============================================================================
+# Work-specific CLI Tools
+#===============================================================================
+
+# Example: VPN tools, internal CLIs, etc.
+# brew "some-work-tool"
+
+#===============================================================================
+# Work-specific Applications
+#===============================================================================
+
+# Example: Slack, Zoom, etc.
+# cask "slack"
+# cask "zoom"

@@ -1,0 +1,20 @@
+# Personal-specific Brewfile
+# Add personal-specific packages here
+# This file is optional and only loaded if present
+
+#===============================================================================
+# Personal CLI Tools
+#===============================================================================
+
+# Example: personal utilities
+# brew "youtube-dl"
+# brew "ffmpeg"
+
+#===============================================================================
+# Personal Applications
+#===============================================================================
+
+# Example: personal apps
+# cask "spotify"
+# cask "discord"
+# cask "1password"
