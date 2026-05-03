@@ -21,13 +21,17 @@
 # cask "anytype"                # Notes/knowledge base
 # cask "perplexity"             # AI search
 
+cask "antigravity"
+cask "logi-options+"
+cask "google-drive"
+
 # Communication
 cask "telegram"               # Messaging app
 cask "whatsapp"               # Messaging app
 cask "discord"                # Community chat
 
 # Entertainment
-cask "youtube-music"          # YouTube Music desktop app
+# cask "youtube-music"          # YouTube Music desktop app
 cask "steam"                  # Gaming platform
 
 # Uncomment as needed:

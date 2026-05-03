@@ -4,8 +4,8 @@
 #===============================================================================
 # Taps
 #===============================================================================
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
+# tap "homebrew/bundle"
+# tap "homebrew/cask-fonts"
 tap "mongodb/brew"
 
 #===============================================================================
@@ -112,7 +112,7 @@ cask "iterm2"                 # Terminal emulator
 cask "visual-studio-code"     # Code editor
 
 # Containers
-cask "docker"                 # Docker Desktop (or use orbstack)
+cask "docker-desktop"                 # Docker Desktop (or use orbstack)
 # cask "orbstack"             # Faster Docker alternative (uncomment if preferred)
 
 # Databases
@@ -133,7 +133,7 @@ cask "raycast"                # Launcher & productivity tool
 cask "rectangle"              # Window management
 cask "clipy"                  # Clipboard manager
 cask "shottr"                 # Screenshot tool
-cask "hidden-bar"             # Menu bar management
+cask "hiddenbar"             # Menu bar management
 cask "betterdisplay"          # Display resolution/scaling
 
 # AI

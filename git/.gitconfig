@@ -8,8 +8,8 @@
 # Override for work in ~/.gitconfig-work
 #-------------------------------------------------------------------------------
 [user]
-    name = Your Name
-    email = your.email@example.com
+    name = Sarthak Mahapatra
+    email = sarthakchampion07@gmail.com
     # SSH signing key (update path after generating key)
     signingkey = ~/.ssh/id_ed25519.pub
 
@@ -19,7 +19,7 @@
 [core]
     editor = vim
     # Use diff-so-fancy for better diffs
-    pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = diff-so-fancy | less --tabs=4 -RF
     # Global gitignore
     excludesfile = ~/.gitignore_global
     # Handle line endings
@@ -32,7 +32,7 @@
 # Init
 #-------------------------------------------------------------------------------
 [init]
-    defaultBranch = main
+	defaultBranch = main
 
 #-------------------------------------------------------------------------------
 # Commit
@@ -143,7 +143,7 @@
     ci = commit
     
     # Logging
-    lg = log --oneline --graph --decorate -15
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lgall = log --oneline --graph --decorate --all -30
     last = log -1 HEAD --stat
     
@@ -191,8 +191,8 @@
 # Conditional Includes
 # Include work-specific config when in work directories
 #-------------------------------------------------------------------------------
-[includeIf "gitdir:~/work/"]
-    path = ~/.gitconfig-work
+#[includeIf "gitdir:~/work/"]
+#    path = ~/.gitconfig-work
 
 # You can add more directory-based includes:
 # [includeIf "gitdir:~/company/"]

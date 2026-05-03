@@ -134,3 +134,9 @@ command -v eza &> /dev/null && alias ls='eza --icons' && alias ll='eza -la --ico
 #-------------------------------------------------------------------------------
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/maverick/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+source /opt/homebrew/opt/nvm/nvm.sh
