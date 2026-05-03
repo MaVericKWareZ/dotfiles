@@ -133,7 +133,7 @@ cask "raycast"                # Launcher & productivity tool
 cask "rectangle"              # Window management
 cask "clipy"                  # Clipboard manager
 cask "shottr"                 # Screenshot tool
-cask "hidden-bar"             # Menu bar management
+cask "hiddenbar"             # Menu bar management
 cask "betterdisplay"          # Display resolution/scaling
 
 # AI
