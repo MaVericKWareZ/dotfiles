@@ -143,3 +143,6 @@ compinit
 source /opt/homebrew/opt/nvm/nvm.sh
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/maverick/.antigravity/antigravity/bin:$PATH"

@@ -32,8 +32,15 @@ cask "discord"                # Community chat
 
 # Entertainment
 # cask "youtube-music"          # YouTube Music desktop app
-cask "steam"                  # Gaming platform
+cask "steam"
+cask "stremio"
 
 # Uncomment as needed:
 # cask "spotify"
 # cask "1password"
+
+cask "bruno"
+cask "notion"
+cask "aldente"
+
+cask "jetbrains-toolbox"
