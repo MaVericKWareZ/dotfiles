@@ -121,6 +121,7 @@ if command -v fd &> /dev/null; then
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
+export PATH="/opt/homebrew/opt/openssh/bin:$PATH"
 
 #-------------------------------------------------------------------------------
 # Modern CLI Tool Aliases
@@ -140,3 +141,5 @@ autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 source /opt/homebrew/opt/nvm/nvm.sh
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"

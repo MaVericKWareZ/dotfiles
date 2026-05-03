@@ -11,7 +11,7 @@
     name = Sarthak Mahapatra
     email = sarthakchampion07@gmail.com
     # SSH signing key (update path after generating key)
-    signingkey = ~/.ssh/id_ed25519.pub
+	signingkey = /Users/maverick/.ssh/id_ed25519.pub
 
 #-------------------------------------------------------------------------------
 # Core Settings
@@ -39,7 +39,7 @@
 #-------------------------------------------------------------------------------
 [commit]
     # Sign all commits with SSH key
-    gpgsign = true
+	gpgsign = true
     # Show diff in commit message editor
     verbose = true
 
@@ -47,11 +47,10 @@
 # GPG (using SSH for signing)
 #-------------------------------------------------------------------------------
 [gpg]
-    format = ssh
+	format = ssh
 
 [gpg "ssh"]
     # Use macOS keychain for SSH
-    program = /usr/bin/ssh-add
 
 #-------------------------------------------------------------------------------
 # Pull / Push / Fetch
