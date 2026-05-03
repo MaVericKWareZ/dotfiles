@@ -3,16 +3,28 @@
 # This file is optional and only loaded if present
 
 #===============================================================================
+# Taps
+#===============================================================================
+# tap "dapr/tap"
+# tap "fluxcd/tap"
+
+#===============================================================================
 # Work-specific CLI Tools
 #===============================================================================
 
-# Example: VPN tools, internal CLIs, etc.
-# brew "some-work-tool"
+# Secrets & Security
+# brew "vault"                  # HashiCorp Vault secrets manager
+
+# Distributed Systems
+# brew "dapr-cli"               # Dapr distributed app runtime CLI
+
+# GitOps
+# brew "fluxcd/tap/flux"        # Flux GitOps CD for Kubernetes
 
 #===============================================================================
 # Work-specific Applications
 #===============================================================================
 
-# Example: Slack, Zoom, etc.
+# Uncomment as needed:
 # cask "slack"
 # cask "zoom"

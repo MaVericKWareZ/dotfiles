@@ -6,7 +6,9 @@
 # Personal CLI Tools
 #===============================================================================
 
-# Example: personal utilities
+# brew "ollama"                 # Local LLM runner
+
+# Uncomment as needed:
 # brew "youtube-dl"
 # brew "ffmpeg"
 
@@ -14,7 +16,20 @@
 # Personal Applications
 #===============================================================================
 
-# Example: personal apps
+# cask "arc"                    # Arc browser
+# cask "todoist"                # Task manager
+# cask "anytype"                # Notes/knowledge base
+# cask "perplexity"             # AI search
+
+# Communication
+cask "telegram"               # Messaging app
+cask "whatsapp"               # Messaging app
+cask "discord"                # Community chat
+
+# Entertainment
+cask "youtube-music"          # YouTube Music desktop app
+cask "steam"                  # Gaming platform
+
+# Uncomment as needed:
 # cask "spotify"
-# cask "discord"
 # cask "1password"
