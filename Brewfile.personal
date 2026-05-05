@@ -16,6 +16,8 @@
 # Personal Applications
 #===============================================================================
 
+brew "stats"
+
 # cask "arc"                    # Arc browser
 # cask "todoist"                # Task manager
 # cask "anytype"                # Notes/knowledge base
@@ -44,3 +46,11 @@ cask "notion"
 cask "aldente"
 
 cask "jetbrains-toolbox"
+cask "calibre"
+cask "todoist-app"
+cask "itsycal"
+cask "dropzone"
+
+cask "omnidisksweeper"
+
+cask "hyperkey"
