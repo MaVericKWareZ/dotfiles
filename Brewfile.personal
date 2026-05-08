@@ -54,3 +54,6 @@ cask "dropzone"
 cask "omnidisksweeper"
 
 cask "hyperkey"
+cask "ngrok"
+cask "obsidian"
+cask "adobe-acrobat-reader"
