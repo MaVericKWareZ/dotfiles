@@ -36,8 +36,8 @@ export PATH="$GOPATH/bin:$PATH"
 # OpenSSH (Homebrew-managed, for newer ssh features)
 export PATH="/opt/homebrew/opt/openssh/bin:$PATH"
 
-# Antigravity
-export PATH="/Users/maverick/.antigravity/antigravity/bin:$PATH"
+# Antigravity (installed via cask — only add if present)
+[[ -d "$HOME/.antigravity/antigravity/bin" ]] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 # Deduplicate PATH — removes any repeated entries that accumulate from
 # multiple sources (Homebrew, Go, OpenSSH, etc.)
@@ -48,7 +48,8 @@ typeset -U path PATH
 # Add custom completion directories BEFORE Oh My Zsh so that OMZ's single
 # compinit call picks them all up — avoids running compinit twice.
 #-------------------------------------------------------------------------------
-fpath=(/Users/maverick/.docker/completions $fpath)
+# Docker Desktop completions (only add if Docker Desktop is installed)
+[[ -d "$HOME/.docker/completions" ]] && fpath=("$HOME/.docker/completions" $fpath)
 
 # Cache completions to disk — speeds up repeated completion lookups
 # Uses XDG cache dir (~/.cache/zsh) to avoid writing into the dotfiles symlink

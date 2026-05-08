@@ -52,11 +52,12 @@ dotfiles/
 │
 ├── zsh/                    # Shell configuration
 │   ├── .zshrc              # Main zsh config
-│   ├── .zshenv             # Environment variables
+│   ├── .zshenv             # Environment variables (all shells)
+│   ├── .p10k.zsh           # Powerlevel10k prompt config
 │   └── .zsh/
 │       ├── aliases.zsh     # All aliases
 │       ├── functions.zsh   # Shell functions
-│       └── deferred.zsh    # Lazy-loaded tools
+│       └── deferred.zsh    # Lazy-loaded tools (nvm, pyenv, SDKMAN)
 │
 ├── git/                    # Git configuration
 │   ├── .gitconfig          # Main git config
@@ -99,6 +100,7 @@ dotfiles/
 ./install.sh shell    # Shell configuration only
 ./install.sh stow     # Symlink dotfiles only
 ./install.sh git      # Git configuration only
+./install.sh vscode   # VS Code settings symlink
 ./install.sh macos    # macOS defaults only
 ```
 
@@ -207,13 +209,17 @@ git pull
 
 | Alias | Command |
 |-------|---------|
-| `gs` | `git status` |
-| `gd` | `git diff` |
-| `gds` | `git diff --staged` |
-| `glog` | Pretty git log (15 commits) |
+| `gst` | `git status` (OMZ) |
+| `gd` | `git diff` (OMZ) |
+| `gds` | `git diff --staged` (OMZ) |
+| `glog` | Pretty git log (15 commits, graph) |
+| `glogall` | Full graph log (30 commits, all branches) |
 | `gpf` | `git push --force-with-lease` |
 | `gwip` | Quick WIP commit |
+| `gunwip` | Undo last WIP commit |
 | `gco` | Fuzzy branch checkout (fzf) |
+| `gadd` | Interactive fuzzy `git add` (fzf) |
+| `gclone` | Clone and cd into repo |
 
 ### Docker
 
@@ -244,9 +250,18 @@ git pull
 |----------|-------------|
 | `mkcd <dir>` | Create directory and cd into it |
 | `fcd` | Fuzzy find and cd into directory |
-| `extract <file>` | Extract any archive |
+| `extract <file>` | Extract any archive format |
 | `killport <port>` | Kill process on port |
-| `genpass [length]` | Generate random password |
+| `genpass [length]` | Generate random password (default 32 chars) |
+| `frg` | Fuzzy ripgrep with editor preview |
+| `fif <term>` | Find in files with bat preview |
+| `topcmds` | Show 20 most-used shell commands |
+| `calc <expr>` | Quick arithmetic via bc |
+| `json` | Pretty-print JSON (pipe or file) |
+| `serve [port]` | Quick Python HTTP server (default :8000) |
+| `notify <cmd>` | Run command and send macOS notification on finish |
+| `dexec` | Fuzzy exec into running Docker container |
+| `dlogs` | Fuzzy follow logs for running Docker container |
 
 ## ⚡ Performance
 

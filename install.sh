@@ -258,6 +258,13 @@ setup_shell() {
         success "SDKMAN already installed"
     fi
     
+    # Ensure ~/.nvm exists — Homebrew's nvm uses this as its working directory
+    # but does not create it automatically (unlike the curl install method)
+    if ! dry_run "mkdir -p $HOME/.nvm"; then
+        mkdir -p "$HOME/.nvm"
+        success "Created ~/.nvm directory"
+    fi
+    
     success "Shell setup complete"
 }
 

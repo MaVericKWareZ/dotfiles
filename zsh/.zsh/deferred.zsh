@@ -15,8 +15,14 @@ export NVM_DIR="$HOME/.nvm"
 # Lazy load function
 _load_nvm() {
   unset -f nvm node npm npx
-  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+  # Homebrew installs nvm to /opt/homebrew/opt/nvm/nvm.sh (not $NVM_DIR)
+  # Check Homebrew path first, fall back to traditional curl-install path
+  if [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]]; then
+    source "/opt/homebrew/opt/nvm/nvm.sh"
+  elif [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    source "$NVM_DIR/nvm.sh"
+  fi
+  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 }
 
 # Create wrapper functions that load nvm on first use
