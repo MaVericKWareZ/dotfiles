@@ -26,7 +26,8 @@ export VISUAL='code'
 
 # Language / Locale
 export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# LC_ALL intentionally omitted — it overrides all locale categories and can
+# cause sorting/unicode inconsistencies. LANG alone is sufficient.
 
 # Go
 export GOPATH="$HOME/go"
@@ -38,12 +39,21 @@ export PATH="/opt/homebrew/opt/openssh/bin:$PATH"
 # Antigravity
 export PATH="/Users/maverick/.antigravity/antigravity/bin:$PATH"
 
+# Deduplicate PATH — removes any repeated entries that accumulate from
+# multiple sources (Homebrew, Go, OpenSSH, etc.)
+typeset -U path PATH
+
 #-------------------------------------------------------------------------------
-# Completion fpath
+# Completion fpath & caching
 # Add custom completion directories BEFORE Oh My Zsh so that OMZ's single
 # compinit call picks them all up — avoids running compinit twice.
 #-------------------------------------------------------------------------------
 fpath=(/Users/maverick/.docker/completions $fpath)
+
+# Cache completions to disk — speeds up repeated completion lookups
+# Uses XDG cache dir (~/.cache/zsh) to avoid writing into the dotfiles symlink
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 
 #-------------------------------------------------------------------------------
 # Oh My Zsh Configuration
@@ -63,7 +73,8 @@ plugins=(
   kubectl                # Kubernetes completions
   aws                    # AWS completions
   zsh-autosuggestions    # Fish-like autosuggestions
-  zsh-syntax-highlighting # Command syntax highlighting
+  # zsh-syntax-highlighting is intentionally absent here —
+  # it must be sourced LAST (after OMZ) for correct ZLE hook behaviour.
 )
 
 # Load Oh My Zsh (runs compinit once internally)
@@ -78,8 +89,10 @@ HISTFILE=~/.zsh_history
 
 setopt SHARE_HISTORY          # Share history across all sessions
 setopt HIST_IGNORE_ALL_DUPS   # Remove older duplicate entries
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicates before unique entries
 setopt HIST_FIND_NO_DUPS      # Don't show duplicates during search
 setopt HIST_REDUCE_BLANKS     # Strip superfluous blank lines
+setopt HIST_IGNORE_SPACE      # Don't record commands prefixed with a space
 setopt INC_APPEND_HISTORY     # Write commands immediately, not on exit
 setopt EXTENDED_HISTORY       # Save timestamps alongside commands
 
@@ -87,7 +100,8 @@ setopt EXTENDED_HISTORY       # Save timestamps alongside commands
 # Shell Options
 #-------------------------------------------------------------------------------
 setopt AUTO_CD                # cd by typing directory name alone
-setopt CORRECT                # Spelling correction for commands
+# CORRECT intentionally omitted — autosuggestions + syntax-highlighting
+# make it redundant, and it produces disruptive "correct X to Y?" prompts.
 setopt NO_BEEP                # Silence the bell
 setopt INTERACTIVE_COMMENTS   # Allow # comments in interactive shell
 
@@ -132,3 +146,10 @@ fi
 # To customise the prompt, run `p10k configure` or edit ~/.p10k.zsh
 #-------------------------------------------------------------------------------
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#-------------------------------------------------------------------------------
+# zsh-syntax-highlighting
+# Must be sourced LAST — it hooks into ZLE internals and must run after all
+# other plugins and completions are initialised.
+#-------------------------------------------------------------------------------
+source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

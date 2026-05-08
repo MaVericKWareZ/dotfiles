@@ -17,6 +17,7 @@
 #   brew          Install Homebrew and packages
 #   shell         Configure zsh, Oh My Zsh, Powerlevel10k
 #   git           Configure Git
+#   vscode        Symlink VS Code settings
 #   macos         Apply macOS defaults
 #   stow          Symlink dotfiles using GNU Stow
 #
@@ -180,16 +181,16 @@ stow_dotfiles() {
         if [[ -d "$DOTFILES_DIR/$package" ]]; then
             info "Stowing $package..."
             
-            # Backup existing files before stowing
-            for file in "$DOTFILES_DIR/$package"/.*; do
-                [[ -e "$file" ]] || continue
-                local basename=$(basename "$file")
-                [[ "$basename" == "." || "$basename" == ".." ]] && continue
-                backup_file "$HOME/$basename"
-            done
+            # Backup any existing real files (non-symlinks) before stowing.
+            # Uses find to catch both top-level dotfiles and nested paths.
+            while IFS= read -r -d '' file; do
+                local rel="${file#$DOTFILES_DIR/$package/}"
+                backup_file "$HOME/$rel"
+            done < <(find "$DOTFILES_DIR/$package" -maxdepth 2 -name '.*' ! -name '.' ! -name '..' -print0)
             
-            if ! dry_run "stow -v -d $DOTFILES_DIR -t $HOME $package"; then
-                stow -v -d "$DOTFILES_DIR" -t "$HOME" "$package"
+            # --restow makes the command idempotent: safe to run repeatedly
+            if ! dry_run "stow --restow -v -d $DOTFILES_DIR -t $HOME $package"; then
+                stow --restow -v -d "$DOTFILES_DIR" -t "$HOME" "$package"
             fi
         fi
     done
@@ -287,6 +288,37 @@ setup_git() {
 }
 
 #-------------------------------------------------------------------------------
+# VS Code Settings
+# GNU Stow cannot handle paths under ~/Library, so we create the symlink manually.
+#-------------------------------------------------------------------------------
+
+setup_vscode() {
+    info "Setting up VS Code settings..."
+    
+    local src="$DOTFILES_DIR/vscode/settings.json"
+    local vscode_dir="$HOME/Library/Application Support/Code/User"
+    local dest="$vscode_dir/settings.json"
+    
+    if [[ ! -f "$src" ]]; then
+        warn "vscode/settings.json not found in dotfiles, skipping"
+        return 0
+    fi
+    
+    if ! command_exists code && [[ ! -d "$vscode_dir" ]]; then
+        warn "VS Code not installed or settings directory not found, skipping"
+        return 0
+    fi
+    
+    mkdir -p "$vscode_dir"
+    backup_file "$dest"
+    
+    if ! dry_run "ln -sf $src '$dest'"; then
+        ln -sf "$src" "$dest"
+        success "VS Code settings symlinked"
+    fi
+}
+
+#-------------------------------------------------------------------------------
 # macOS Defaults
 #-------------------------------------------------------------------------------
 
@@ -360,6 +392,7 @@ main() {
                 setup_shell
                 stow_dotfiles
                 setup_git
+                setup_vscode
                 setup_macos
                 ;;
             brew)
@@ -373,6 +406,9 @@ main() {
                 ;;
             git)
                 setup_git
+                ;;
+            vscode)
+                setup_vscode
                 ;;
             macos)
                 setup_macos
