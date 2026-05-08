@@ -118,8 +118,9 @@ dlogs() {
 # Search Functions
 #-------------------------------------------------------------------------------
 
-# Fuzzy grep with preview
-fgrep() {
+# Fuzzy ripgrep with preview — opens result in $EDITOR
+# Named 'frg' to avoid shadowing the system fgrep(1) binary
+frg() {
   local file line
   read -r file line <<< "$(rg --line-number --no-heading . 2>/dev/null | fzf -d ':' --preview 'bat --color=always {1} --highlight-line {2}' | awk -F: '{print $1, $2}')"
   [[ -n "$file" ]] && ${EDITOR:-vim} "+$line" "$file"
@@ -173,10 +174,10 @@ calc() {
   echo "scale=2; $*" | bc
 }
 
-# JSON pretty print
+# JSON pretty print — reads from stdin or a file argument
 json() {
   if [[ -p /dev/stdin ]]; then
-    cat - | jq '.'
+    jq '.'          # jq reads stdin natively; cat is redundant
   else
     jq '.' < "$1"
   fi

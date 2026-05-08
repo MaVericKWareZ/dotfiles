@@ -18,6 +18,21 @@ alias proj='cd ~/Projects'
 alias work='cd ~/work'
 
 #-------------------------------------------------------------------------------
+# File Listing — modern replacements via eza
+# Falls back gracefully if eza is not installed
+#-------------------------------------------------------------------------------
+if command -v eza &> /dev/null; then
+  alias ls='eza --icons'
+  alias ll='eza -la --icons'
+  alias la='eza -a --icons'
+fi
+
+#-------------------------------------------------------------------------------
+# File Viewing — modern replacement via bat
+#-------------------------------------------------------------------------------
+command -v bat &> /dev/null && alias cat='bat --paging=never'
+
+#-------------------------------------------------------------------------------
 # File Operations
 #-------------------------------------------------------------------------------
 alias cp='cp -iv'
@@ -81,11 +96,16 @@ alias kexec='kubectl exec -it'
 alias awswho='aws sts get-caller-identity'
 
 #-------------------------------------------------------------------------------
-# Git (supplements Oh My Zsh git plugin)
+# Git — supplements the Oh My Zsh git plugin
+#
+# Intentional overrides of OMZ defaults:
+#   glog / glogall  — richer graph format than OMZ's default `glog`
+#
+# Removed to avoid conflicts / duplication with OMZ:
+#   gs  (OMZ: git stash  | was: git status — use OMZ's `gst` instead)
+#   gd  (identical to OMZ's `gd`)
+#   gds (identical to OMZ's `gds`)
 #-------------------------------------------------------------------------------
-alias gs='git status'
-alias gd='git diff'
-alias gds='git diff --staged'
 alias glog='git log --oneline --graph --decorate -15'
 alias glogall='git log --oneline --graph --decorate --all -30'
 alias gpf='git push --force-with-lease'
@@ -99,13 +119,13 @@ alias h='history'
 alias hg='history | grep'
 alias cls='clear'
 alias path='echo $PATH | tr ":" "\n"'
-alias reload='source ~/.zshrc && echo "Reloaded .zshrc"'
+alias reload='source ~/.zshrc && echo "✓ .zshrc reloaded"'
 
 # IP addresses
 alias myip='curl -s ifconfig.me'
 alias localip='ipconfig getifaddr en0'
 
-# Show/hide hidden files in Finder
+# macOS Finder — show/hide hidden files
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
 
