@@ -146,3 +146,5 @@ temp/
 coverage/
 .nyc_output/
 dist/
+
+**/.claude/settings.local.json
