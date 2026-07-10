@@ -176,18 +176,20 @@ stow_dotfiles() {
     fi
     
     # Stow each package
-    local packages=("zsh" "git" "vim" "tmux")
+    local packages=("zsh" "git" "vim" "tmux" "nvim")
     
     for package in "${packages[@]}"; do
         if [[ -d "$DOTFILES_DIR/$package" ]]; then
             info "Stowing $package..."
             
             # Backup any existing real files (non-symlinks) before stowing.
-            # Uses find to catch both top-level dotfiles and nested paths.
+            # Restrict to files (-type f) so shared parent dirs like ~/.config
+            # are never moved wholesale — stow folds into them instead. Depth 3
+            # reaches nested package files such as nvim/.config/nvim/init.lua.
             while IFS= read -r -d '' file; do
                 local rel="${file#$DOTFILES_DIR/$package/}"
                 backup_file "$HOME/$rel"
-            done < <(find "$DOTFILES_DIR/$package" -maxdepth 2 -name '.*' ! -name '.' ! -name '..' -print0)
+            done < <(find "$DOTFILES_DIR/$package" -maxdepth 3 -type f -name '.*' ! -name '.' ! -name '..' -print0)
             
             # --restow makes the command idempotent: safe to run repeatedly
             if ! dry_run "stow --restow -v -d $DOTFILES_DIR -t $HOME $package"; then

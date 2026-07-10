@@ -67,6 +67,9 @@ dotfiles/
 ├── vim/                    # Vim configuration
 │   └── .vimrc              # Minimal vim setup
 │
+├── nvim/                   # Neovim configuration (full IDE)
+│   └── .config/nvim/       # lazy.nvim: LSP, Treesitter, Telescope, git
+│
 ├── tmux/                   # tmux configuration
 │   └── .tmux.conf          # Terminal multiplexer setup (tpm plugins)
 │

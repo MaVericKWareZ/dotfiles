@@ -6,6 +6,8 @@
 # Personal CLI Tools
 #===============================================================================
 
+brew "neovim"                   # Hyperextensible Vim-based text editor
+
 # brew "ollama"                 # Local LLM runner
 
 # Uncomment as needed:
