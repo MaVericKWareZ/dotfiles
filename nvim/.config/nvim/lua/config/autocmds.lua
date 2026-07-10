@@ -49,6 +49,11 @@ autocmd("BufWritePre", {
   group = augroup("trim_whitespace", { clear = true }),
   pattern = "*",
   callback = function()
+    -- Only touch normal file buffers; skip special buffers (checkhealth,
+    -- help, terminals, prompts) where a substitute would error.
+    if vim.bo.buftype ~= "" then
+      return
+    end
     local save = vim.fn.winsaveview()
     vim.cmd([[keeppatterns %s/\s\+$//e]])
     vim.fn.winrestview(save)

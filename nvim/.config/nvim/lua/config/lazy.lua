@@ -29,6 +29,9 @@ require("lazy").setup({
   install = { colorscheme = { "catppuccin" } },
   checker = { enabled = false }, -- don't auto-check for plugin updates
   change_detection = { notify = false },
+  -- No plugin here needs luarocks; disable the whole rocks subsystem so
+  -- :checkhealth doesn't warn about a missing luarocks/hererocks install.
+  rocks = { enabled = false },
   ui = { border = "rounded" },
   performance = {
     rtp = {

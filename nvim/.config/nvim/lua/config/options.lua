@@ -63,3 +63,11 @@ opt.autoread = true
 opt.hidden = true
 opt.undofile = true           -- persistent undo across sessions
 opt.undolevels = 10000
+
+-- Providers -------------------------------------------------------------------
+-- Disable the optional remote-plugin hosts. No plugin in this config is a
+-- remote plugin, so these just produce :checkhealth warnings otherwise.
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
