@@ -154,3 +154,10 @@ fi
 # other plugins and completions are initialised.
 #-------------------------------------------------------------------------------
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+#-------------------------------------------------------------------------------
+# Machine-local overrides (not tracked in git)
+# Put per-machine PATH tweaks, secrets, and host-specific aliases in
+# ~/.zshrc.local — it stays out of the repo so the tracked config stays portable.
+#-------------------------------------------------------------------------------
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
