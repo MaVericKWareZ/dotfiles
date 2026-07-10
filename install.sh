@@ -18,6 +18,7 @@
 #   shell         Configure zsh, Oh My Zsh, Powerlevel10k
 #   git           Configure Git
 #   vscode        Symlink VS Code settings
+#   tmux          Install tpm and tmux plugins
 #   macos         Apply macOS defaults
 #   stow          Symlink dotfiles using GNU Stow
 #
@@ -175,7 +176,7 @@ stow_dotfiles() {
     fi
     
     # Stow each package
-    local packages=("zsh" "git" "vim")
+    local packages=("zsh" "git" "vim" "tmux")
     
     for package in "${packages[@]}"; do
         if [[ -d "$DOTFILES_DIR/$package" ]]; then
@@ -326,6 +327,42 @@ setup_vscode() {
 }
 
 #-------------------------------------------------------------------------------
+# tmux - Plugin Manager (tpm)
+# The .tmux.conf is symlinked by stow; here we bootstrap tpm and its plugins,
+# mirroring how zsh plugins are git-cloned in setup_shell().
+#-------------------------------------------------------------------------------
+
+setup_tmux() {
+    info "Setting up tmux plugins..."
+
+    if ! command_exists tmux; then
+        warn "tmux not installed. Run './install.sh brew' first, skipping"
+        return 0
+    fi
+
+    # Install tpm (Tmux Plugin Manager) if not present
+    local tpm_dir="$HOME/.tmux/plugins/tpm"
+    if [[ ! -d "$tpm_dir" ]]; then
+        info "Installing tpm..."
+        if ! dry_run "git clone https://github.com/tmux-plugins/tpm $tpm_dir"; then
+            git clone https://github.com/tmux-plugins/tpm "$tpm_dir"
+        fi
+    else
+        success "tpm already installed"
+    fi
+
+    # Install the plugins declared in .tmux.conf (non-interactive)
+    if [[ -x "$tpm_dir/bin/install_plugins" ]]; then
+        info "Installing tmux plugins declared in .tmux.conf..."
+        if ! dry_run "$tpm_dir/bin/install_plugins"; then
+            "$tpm_dir/bin/install_plugins"
+        fi
+    fi
+
+    success "tmux setup complete"
+}
+
+#-------------------------------------------------------------------------------
 # macOS Defaults
 #-------------------------------------------------------------------------------
 
@@ -348,7 +385,7 @@ setup_macos() {
 #-------------------------------------------------------------------------------
 
 show_help() {
-    head -n 26 "${BASH_SOURCE[0]}" | tail -n 24 | sed 's/^# //' | sed 's/^#//'
+    head -n 28 "${BASH_SOURCE[0]}" | tail -n 26 | sed 's/^# //' | sed 's/^#//'
 }
 
 #-------------------------------------------------------------------------------
@@ -400,6 +437,7 @@ main() {
                 stow_dotfiles
                 setup_git
                 setup_vscode
+                setup_tmux
                 setup_macos
                 ;;
             brew)
@@ -416,6 +454,9 @@ main() {
                 ;;
             vscode)
                 setup_vscode
+                ;;
+            tmux)
+                setup_tmux
                 ;;
             macos)
                 setup_macos

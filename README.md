@@ -67,6 +67,9 @@ dotfiles/
 ├── vim/                    # Vim configuration
 │   └── .vimrc              # Minimal vim setup
 │
+├── tmux/                   # tmux configuration
+│   └── .tmux.conf          # Terminal multiplexer setup (tpm plugins)
+│
 ├── macos/                  # macOS settings
 │   └── defaults.sh         # System preferences
 │

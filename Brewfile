@@ -25,6 +25,7 @@ brew "fd"                     # Modern find replacement
 brew "ripgrep"                # Fast grep replacement
 brew "tree"                   # Directory tree viewer
 brew "htop"                   # Interactive process viewer
+brew "tmux"                   # Terminal multiplexer
 brew "jq"                     # JSON processor
 brew "yq"                     # YAML processor
 
