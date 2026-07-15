@@ -32,4 +32,22 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     opts = {},
   },
+
+  -- Live colour swatches: highlights hex codes (#89b4fa), rgb()/hsl(), and
+  -- named colours in their actual colour, so tmux.conf palettes etc. preview.
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      user_default_options = {
+        names = false,       -- don't colour bare words like "red"/"blue"
+        RGB = true,          -- #RGB
+        RRGGBB = true,       -- #RRGGBB
+        RRGGBBAA = true,     -- #RRGGBBAA
+        rgb_fn = true,       -- rgb()/rgba()
+        hsl_fn = true,       -- hsl()/hsla()
+        mode = "background", -- paint the swatch behind the code
+      },
+    },
+  },
 }
